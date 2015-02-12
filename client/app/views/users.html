@@ -2,8 +2,8 @@
 <h2>hi</h2>
 
 
-        <strong>Name:</strong>  {{user.first_name}}
-      {{user.last_name}}
+    <ul ng-repeat="user in users">
+        <strong>Name:</strong>  {{user.first_name}}{{user.last_name}}
         <br>
         <strong>Email:</strong> {{user.email}}
         <br>

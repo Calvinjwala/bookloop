@@ -44,7 +44,7 @@ var app = angular.module('bookloopApp', [
         controller: 'UsersCtrl'
       })
       .when('/user/login', {
-        templateUrl: 'views/attempt_login.html',
+        templateUrl: 'views/login.html',
         controller: 'UsersCtrl'
       })
       .otherwise({

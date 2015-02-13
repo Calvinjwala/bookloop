@@ -34,20 +34,19 @@ angular.module('bookloopApp')
 
 
     $scope.loginUser = function(user){
-      $scope.id = user.id;
       console.log(user);
-      Users.delete(user);
-      // console.log(user);
-
-      lodash.remove($scope.users, user);
+      $http.post("http://localhost:3000/api/login", {
+        email: user.email,
+        password: user.password
+      }).then(function(result) {
+        console.log(result);
+        // email = {
+        //   // accessToken: result.data.access_token,
+        //   userName: result.data.userName
+        // };
+      // };
+      });
     };
 
-    // $scope.deleteUser = function(user){
-    //   user.delete({id: user.id}, function(){
-    //     delete $scope.users(user);
-    //   });
-    // //   // $scope.users.splice(index, 1);
-    // //   // console.log(index);
-    // };
   }]);
 

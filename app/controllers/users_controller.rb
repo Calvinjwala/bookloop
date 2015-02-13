@@ -61,6 +61,17 @@ class UsersController < ApplicationController
     flash[:notice] = "Logged out"
   end
 
+  def password_reset
+    if User.where(email: params[:email]).present?
+      @user = User.where(email: params[:email]).first
+      @user.update_attributes(:reset_token => Random.rand(100))
+      UserMailer.password_reset(@user, root_url).deliver
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update

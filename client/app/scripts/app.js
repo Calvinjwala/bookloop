@@ -39,11 +39,11 @@ var app = angular.module('bookloopApp', [
         templateUrl: 'views/books.html',
         controller: 'BooksCtrl'
       })
-      .when('/user/signup', {
+      .when('/signup', {
         templateUrl: 'views/signup.html',
         controller: 'UsersCtrl'
       })
-      .when('/user/login', {
+      .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'UsersCtrl'
       })
@@ -52,24 +52,6 @@ var app = angular.module('bookloopApp', [
       });
   });
 
-// app.factory('Users', function($resource) {
-//   return $resource('/api/users/:id', { id: '@user.id' },
-//   {
-//     'create': {method: 'POST'},
-//     'index': {method: 'GET'},
-//     'show': { method: 'GET'},
-//     'update': { method:'PUT' },
-//     'destroy': {method: 'DELETE'}
-//   });
-// });
-
-// app.factory('Books', ['$resource', function($resource) {
-//   // return $resource('http://localhost\\:3000/api/books', null, {
-//   //   'update': { method:'PUT' },
-//   //   'post': { method: 'POST', url: 'http://localhost\\:3000/api/books' }
-//   //   // 'action': { method: 'PUT', url: 'http://localhost\\:3000/api/users/:id/action'}
-//   // });
-// }]);
 
 app.provider('Books', function(){
   this.$get = ['$resource', function($resource){
@@ -98,7 +80,14 @@ app.provider('Books', function(){
 app.provider('Users', function(){
   this.$get = ['$resource', function($resource){
     var User = $resource('/api/users', null, {
-      create: {
+      signup: {
+        method: 'POST',
+        url: '/api/users',
+        params: {user: '@user'},
+        transformRequest: [],
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      },
+      login: {
         method: 'POST',
         url: '/api/users',
         params: {user: '@user'},
@@ -117,32 +106,6 @@ app.provider('Users', function(){
 
   }];
 });
-
-
-// app.provider('Users', function(){
-//   this.$get = ['$resource', function($resource){
-//     var User = $resource('http://localhost:3000/api/users', null, {
-//       update: {
-//         method: 'POST',
-//         url: 'http://localhost:3000/api/users/',
-//         // params: {title: user.title},
-//         transformRequest: [],
-//         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-//       },
-//       delete: {
-//         method: 'DELETE',
-//         url: 'http://localhost:3000/api/users/',
-//         // id: '@user',
-//         transformRequest: [],
-//         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-//       }
-//     });
-//     return User;
-//   }];
-// });
-
-
-
 
 
 

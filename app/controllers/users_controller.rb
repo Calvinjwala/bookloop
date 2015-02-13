@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   def destroy
 
     @user = User.find(params[:id])
-    binding.pry
+
     @user.destroy
 
     head :no_content

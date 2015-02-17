@@ -33,18 +33,18 @@ angular.module('bookloopApp')
     };
 
 
-    $scope.loginUser = function(){
-      var user = {
-        email: $scope.email,
-        password: $scope.password
-      };
-      $http.post('/api/users.json', user).success(function(data, status){
-        console.log(data, status, "hello");
+    $scope.loginUser = function(user){
+      // var user = {
+      //   email: $scope.email,
+      //   password: $scope.password
+      // };
+      $http.post('/api/users.json', {email: email, password: password}).success(function(data, status){
+        console.log("data:", data, "status:", status, "success!");
       }).
       error(function(data, status) {
-        console.log(data, status, "fuck");
+        console.log("data:", data, "status:", status, "fail!");
       });
-      console.log(user);
+      console.log("user:", user);
     };
 
     // $scope.deleteUser = function(user){
